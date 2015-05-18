@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
     ProgressBar pBar;
     TextView tView1, tView2;
 
-
+    //C4 Async Task
     public void runAsync(View view){
         new AsyncCounter().execute("");
     }
@@ -43,25 +43,8 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /* android.view.ViewRootImpl$CalledFromWrongThreadException:
-       Only the original thread that created a view hierarchy can touch its views.
-     public void startProgress(View view){
 
-        Runnable runnable = new Runnable()
-            @Override
-            public void run() {
-                for (int i = 0; i <= pBar.getMax(); i++){
-
-                    final int value = i;
-                    tonsOfWork();
-                    tView.setText(String.valueOf(value));
-                    pBar.setProgress(value);
-                }
-            }
-        };
-        new Thread(runnable).start();
-    }*/
-
+    //C3 mit Thread und post method
     public void startProgress(View view){
 
         Runnable runnable = new Runnable() {
@@ -83,6 +66,38 @@ public class MainActivity extends ActionBarActivity {
         };
         new Thread(runnable).start();
     }
+
+    /*
+    //C2 ohne Thread
+    public void startProgress(View view){
+        pBar.setMax(1000000000);
+        for (int i = 0; i<= pBar.getMax(); i++){
+            pBar.setProgress(i);
+            tView1.setText(String.valueOf(i*100/pBar.getMax())+"%");
+        }
+    }
+    */
+
+    /*
+    android.view.ViewRootImpl$CalledFromWrongThreadException:
+    Only the original thread that created a view hierarchy can touch its views.
+     //C3 mit Thread
+     public void startProgress(View view){
+
+        Runnable runnable = new Runnable()
+            @Override
+            public void run() {
+                for (int i = 0; i <= pBar.getMax(); i++){
+
+                    final int value = i;
+                    tonsOfWork();
+                    tView.setText(String.valueOf(value));
+                    pBar.setProgress(value);
+                }
+            }
+        };
+        new Thread(runnable).start();
+    }*/
 
     //tons of work
     private void tonsOfWork(){

@@ -31,7 +31,8 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         //reference to sensor service
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        //check for and initialize light sensor
+
+        //B3 check for and initialize light sensor
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT) != null){
             mLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
             Log.i("Lichtsensor", "vorhanden");
@@ -41,7 +42,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             Log.i("Lichtsensor", "nicht vorhanden");
         }
 
-        //check for and initialize accelerometer
+        //B3 check for and initialize accelerometer
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null){
             mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             Log.i("Beschleunigungssensor", "vorhanden");
@@ -73,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
     }
 
-    //compute accelerometer data
+    //B5 compute accelerometer data
     private void getAccelerometer(SensorEvent event){
 
        final float[] values = event.values;
@@ -96,7 +97,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
        Log.i("Z:", String.valueOf(values[2]));
     }
 
-    //compute light data
+    //B6 compute light data
     private void getLight(SensorEvent event){
 
         final float values = event.values[0];
